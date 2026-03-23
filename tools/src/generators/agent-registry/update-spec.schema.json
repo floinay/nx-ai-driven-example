@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "UpdateSpec",
+  "title": "Update spec frontmatter",
+  "type": "object",
+  "properties": {
+    "slug": {"type": "string", "$default": {"$source": "argv", "index": 0}, "x-prompt": "Spec slug"},
+    "status": {"type": "string", "enum": ["stub", "draft", "ready", "in-progress", "done"]}
+  },
+  "required": ["slug"]
+}

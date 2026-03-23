@@ -1,52 +1,25 @@
----
-name: delivery-report
-description: Format delivery summary for the user after qa-analyst GREEN.
-allowed-tools: Read, Glob, Grep
----
-
 # Delivery Report
 
-## When to use
+Format delivery summary for the user after qa-analyst GREEN.
 
-After `qa-analyst: GREEN`. The Lead applies this skill to compose a structured
-delivery summary before presenting results to the user.
-
-## Inputs
-
-- Task spec (`specs/<task-slug>.md`)
-- QA output and test results
-- Changed files (`git diff --name-only main...HEAD`)
-
-## Deliverable classification
-
-Classify and format by type:
-
-- **interactive-ui**: Screenshot/URL + changed components + states covered
-- **backend-report**: API changes + DB changes + migration notes
-- **full-stack**: Both above, structured by layer
-- **spec-presentation**: Spec summary + what changed + next steps
-- **infra-report**: Config changes + what was affected + rollback info
-
-## Report structure
+## Template
 
 ```
-## Delivery: [task title]
-**Type**: [classification]
-**Spec**: `specs/<slug>.md`
+## Delivery: <spec-slug>
 
-### What changed
-[Bullet list grouped by area: backend, frontend, tests, config]
+**Status**: GREEN
+**Branch**: task/<slug>
 
-### Verification
-[QA result summary, test status, coverage]
+### Changes
+- [list key changes]
 
-### Notes for the developer
-[Anything noteworthy: manual steps needed, follow-up specs, known limitations]
+### Test coverage
+- [coverage summary from tester mailbox]
+
+### Next steps
+- Review and merge when ready
+- Run: `git merge --no-ff task/<slug>`
 ```
 
-## Boundaries
 
-- Formatting only — does not verify, test, or modify code.
-- Does not start servers or run commands beyond reading files.
-- Factual only — never invent features or embellish results.
-- Every claim must be verifiable from the diff and QA output.
+<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->

@@ -3,8 +3,12 @@
   "configurations": [
     {
       "name": "prototype",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--prefix", "apps/prototype"],
+      "runtimeExecutable": "npx",
+      "runtimeArgs": [
+        "nx",
+        "serve",
+        "prototype"
+      ],
       "port": 4500
     }
   ]

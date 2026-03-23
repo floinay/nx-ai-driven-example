@@ -1,55 +1,22 @@
----
-name: qa-verification
-description: QA checklist for the qa-analyst agent — build, test, coverage, acceptance criteria, and final verdict.
-allowed-tools: Read, Glob, Grep, Bash
----
+# QA Verification Checklist
 
-# QA Verification
+Quality gate checklist for the qa-analyst agent.
 
-## When to use
+## Checks
 
-After implementation is complete, before declaring a task done.
-The qa-analyst agent MUST follow this checklist.
+1. **Build** — `npm run build` (or equivalent) exits 0
+2. **Tests** — `npm test` exits 0, no skipped tests
+3. **Coverage** — line coverage >= 80% on changed files
+4. **Acceptance criteria** — each AC from spec is met
+5. **Edge cases** — error handling, empty states, boundary values
+6. **Architecture** — changes respect module boundaries
+7. **No regressions** — existing tests still pass
 
-## Inputs
+## Verdict
 
-- The task spec (`specs/<task-slug>.md`) — acceptance criteria
-- The list of changed files (`git diff --name-only main...HEAD`)
-- The mailbox artifacts in `tmp/agent-mailbox/` (if they exist)
+- `qa-analyst: GREEN` — all checks pass
+- `qa-analyst: FEEDBACK → [agent]` — specific issues, route to agent
+- `qa-analyst: ESCALATE → lead` — needs user decision
 
-## Steps
 
-1. **Build all projects**
-
-   Run the project build command. If it fails, emit `qa-analyst: FEEDBACK -> coder-backend`
-   or `coder-frontend` with the error.
-
-2. **Run all tests**
-
-   Run the test suite. Check coverage on changed modules. If any changed module
-   is below 80% line coverage, emit `qa-analyst: FEEDBACK -> tester`.
-
-3. **Run E2E tests for UI changes**
-
-   If any `.tsx`, `.jsx`, `.css` files changed, run E2E tests.
-   If E2E fails, emit `qa-analyst: FEEDBACK -> coder-frontend` or `tester`.
-
-4. **Verify acceptance criteria**
-
-   Read the spec's `## Acceptance criteria` section. Verify each criterion is
-   met by the implementation. If any criterion is unmet, emit `qa-analyst: FEEDBACK`
-   specifying which criterion failed.
-
-5. **Emit final verdict**
-
-   - `qa-analyst: GREEN` — only if ALL above steps pass.
-   - `qa-analyst: FEEDBACK -> [agent]` — if any step fails.
-   - `qa-analyst: ESCALATE -> lead` — for architectural issues.
-
-## Boundaries
-
-- The QA agent MUST NOT fix code. It reports findings only.
-- The QA agent MUST NOT skip steps. Every step is mandatory.
-- The QA agent MUST NOT declare GREEN if any step was skipped or failed.
-- The QA agent MUST NOT start long-lived processes. The Lead starts servers before
-  spawning QA. If a required server is not running, report to the Lead.
+<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->

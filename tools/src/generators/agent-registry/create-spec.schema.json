@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "CreateSpec",
+  "title": "Create a new spec from template",
+  "type": "object",
+  "properties": {
+    "slug": {"type": "string", "$default": {"$source": "argv", "index": 0}, "x-prompt": "Spec slug (kebab-case)"},
+    "goal": {"type": "string", "x-prompt": "Goal (1-2 sentences)"},
+    "status": {"type": "string", "default": "stub", "enum": ["stub", "draft"]},
+    "milestone": {"type": "string"}
+  },
+  "required": ["slug", "goal"]
+}
