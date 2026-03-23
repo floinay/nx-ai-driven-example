@@ -7,7 +7,6 @@
       "Write",
       "Glob",
       "Grep",
-      "NotebookEdit",
       "WebSearch"
     ],
     "deny": [
@@ -26,7 +25,18 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash hooks/worktree-guard.sh"
+            "command": "bash .agents/hooks/worktree-guard.sh"
+          }
+        ],
+        "matcher": "Write|Edit"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .agents/hooks/spec-ready-gate.sh"
           }
         ],
         "matcher": "Write|Edit"

@@ -1,0 +1,146 @@
+# Agent Registry — Single Source of Truth
+# All derived files (.claude/agents/*.md) are generated from this file.
+# DO NOT edit derived files directly — they will be overwritten.
+# Run: npx nx g tools:sync-all
+
+agents:
+  reviewer:
+    description: >
+      Spec gate-keeper and post-change quality analyst. Operates in two modes:
+      (1) Pre-implementation: validates spec readiness, checks feasibility.
+      (2) Post-change: validates code matches acceptance criteria, checks logic
+      correctness, documentation consistency, and code hygiene.
+      Emits "reviewer: APPROVED" or "reviewer: FEEDBACK → [agent]".
+    model: opus
+    tools: [Read, Glob, Grep]
+    permissionMode: default
+    spawned_by: lead
+    spawned_after: []
+    workflows: [IMPLEMENT, AD_HOC]
+    files_modified: []
+    signals:
+      emits:
+        [
+          'reviewer: APPROVED',
+          'reviewer: FEEDBACK → [agent]',
+          'reviewer: BLOCKED',
+        ]
+
+  coder-backend:
+    description: >
+      Backend implementation specialist. Implements API routes, database schemas,
+      business logic, and service code. Writes API contract to
+      tmp/agent-mailbox/coder-backend.md. Emits "coder-backend: DONE".
+    model: opus
+    tools: [Read, Glob, Grep, Bash, Write, Edit]
+    permissionMode: acceptEdits
+    spawned_by: lead
+    spawned_after: ['reviewer: APPROVED']
+    workflows: [IMPLEMENT]
+    files_modified: [worktree application code]
+    signals:
+      emits: ['coder-backend: DONE']
+
+  coder-frontend:
+    description: >
+      Frontend implementation specialist. Implements UI components, pages,
+      routing, and state management. Reads API contract from
+      tmp/agent-mailbox/coder-backend.md. Uses semantic color tokens and
+      shadcn/ui components. Emits "coder-frontend: DONE".
+    model: opus
+    tools: [Read, Glob, Grep, Bash, Write, Edit]
+    permissionMode: acceptEdits
+    spawned_by: lead
+    spawned_after: ['reviewer: APPROVED']
+    workflows: [IMPLEMENT]
+    files_modified: [worktree UI code]
+    signals:
+      emits: ['coder-frontend: DONE']
+
+  tester:
+    description: >
+      Test specialist (vitest, Playwright). Writes unit/integration tests and
+      E2E tests. Reads both agent mailboxes for API contracts and UI components.
+      Target >= 80% line coverage on changed modules.
+      Emits "tester: DONE" with coverage report path.
+    model: sonnet
+    tools: [Read, Glob, Grep, Bash, Write, Edit]
+    permissionMode: acceptEdits
+    spawned_by: lead
+    spawned_after: ['coder-backend: DONE', 'coder-frontend: DONE']
+    workflows: [IMPLEMENT]
+    files_modified: [worktree test files]
+    signals:
+      emits: ['tester: DONE']
+
+  qa-analyst:
+    description: >
+      Quality gate before user approval. Checks build, tests, coverage
+      (< 80% → feedback), edge cases, and architectural spot-check.
+      Emits "qa-analyst: GREEN", "qa-analyst: FEEDBACK → [agent]", or
+      "qa-analyst: ESCALATE → lead".
+    model: opus
+    tools: [Read, Glob, Grep, Bash]
+    permissionMode: default
+    spawned_by: lead
+    spawned_after: ['reviewer: APPROVED']
+    workflows: [IMPLEMENT, AD_HOC]
+    files_modified: []
+    signals:
+      emits:
+        [
+          'qa-analyst: GREEN',
+          'qa-analyst: FEEDBACK → [agent]',
+          'qa-analyst: ESCALATE → lead',
+        ]
+
+  architect:
+    description: >
+      Design conscience. Spawn when: (1) reviewer is BLOCKED on a contract issue,
+      (2) a spec has unanswered architectural questions, (3) a new module or
+      service is being introduced, (4) the user asks "how should this be designed".
+      Produces ADRs and contract drafts. Does NOT write implementation code.
+      Emits "architect: DONE".
+    model: opus
+    tools: [Read, Glob, Grep, Write]
+    permissionMode: acceptEdits
+    spawned_by: lead
+    spawned_after: ['reviewer: BLOCKED', 'user request']
+    workflows: [IMPLEMENT, SPEC]
+    files_modified: ['docs/adr/*.md']
+    signals:
+      emits: ['architect: DONE']
+
+  support:
+    description: >
+      General-purpose debugger and fixer for AD_HOC workflow. Diagnoses and
+      fixes issues across backend and frontend without requiring a full spec
+      cycle. Escalates to architect when design decisions are needed.
+      Emits "support: DONE" or "support: NEEDS_ARCHITECT".
+    model: opus
+    tools: [Read, Glob, Grep, Bash, Write, Edit]
+    permissionMode: acceptEdits
+    spawned_by: lead
+    spawned_after: []
+    workflows: [AD_HOC]
+    files_modified: [worktree code]
+    signals:
+      emits: ['support: DONE', 'support: NEEDS_ARCHITECT']
+
+  prototype-designer:
+    description: >
+      UI prototyping specialist. Generates screen prototypes in apps/prototype/
+      using Tailwind CSS and shadcn/ui components. Takes a screen description
+      (text or Figma URL) and produces a working visual prototype with hardcoded
+      mock data. No business logic, no API calls — pure visual layout.
+      Emits "prototype-designer: DONE" with preview screenshot.
+    model: sonnet
+    tools: [Read, Glob, Grep, Bash, Write, Edit]
+    permissionMode: acceptEdits
+    spawned_by: lead
+    spawned_after: []
+    workflows: [AD_HOC]
+    files_modified:
+      ['apps/prototype/src/screens/*', 'apps/prototype/src/router.tsx']
+    signals:
+      emits: ['prototype-designer: DONE']

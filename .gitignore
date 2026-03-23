@@ -12,6 +12,9 @@ tmp/
 .env.*
 !.env.example
 
+# Nx
+.nx/
+
 # OS
 .DS_Store
 
@@ -20,3 +23,6 @@ tmp/
 .vscode/
 *.swp
 *.swo
+
+# Claude worktrees
+.claude/worktrees/

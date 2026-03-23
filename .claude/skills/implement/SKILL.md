@@ -6,55 +6,53 @@ argument-hint: [spec-slug]
 allowed-tools: Read, Glob, Grep, Bash, Write, Edit, Agent
 ---
 
+<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->
+
 # IMPLEMENT Workflow
 
 Start the IMPLEMENT workflow for spec **$ARGUMENTS**.
 
+This command bypasses workflow-guard and launches the IMPLEMENT workflow directly.
+
 ## Pre-flight
 
-1. Read `CLAUDE.md` — mandatory session context.
-2. Read `specs/$ARGUMENTS.md`. If it does not exist, STOP and tell the user.
+1. Read `AGENTS.md` — mandatory session context.
+2. Read `.agents/specs/$ARGUMENTS.md`. If it does not exist, STOP and tell the user.
 3. Check frontmatter `status`:
    - `ready` or `in-progress` — proceed.
-   - `stub` or `draft` — STOP. Tell user: "Spec is not ready. Run `/spec $ARGUMENTS` to refine it."
+   - `draft` or `stub` — STOP. Tell user: "Spec is not ready. Run `/spec $ARGUMENTS` to refine it."
    - `done` — STOP. Tell user this spec is already completed.
 
 ## Dispatch
 
-0. **Ensure worktree** — check if already in a worktree: run `git rev-parse --show-toplevel`
-   and compare to the main repo root.
-   - **Already in worktree** -> reuse it. Set `WORKTREE_CREATED=false`.
-   - **Not in worktree** -> use `EnterWorktree`. Set `WORKTREE_CREATED=true`.
+Follow the IMPLEMENT workflow in `.agents/workflows.yaml` exactly. The steps:
 
+0. **Ensure worktree** — check if already in a worktree: run `git rev-parse --show-toplevel` and compare to the main repo root.
+   - **Already in worktree** → reuse it. Set `WORKTREE_CREATED=false`.
+   - **Not in worktree** → use `EnterWorktree`. Set `WORKTREE_CREATED=true`.
 1. **Update status** — set spec `status: in-progress` in frontmatter.
 
-2. **reviewer-pre** — agent: `reviewer` (mode: pre-implementation)
+1. **reviewer-pre** — agent: `reviewer` (mode: pre-implementation)
    - Success: `reviewer: APPROVED`
-   - Failure: `reviewer: BLOCKED` -> fix spec issues, re-run reviewer
-
-3. **coder-backend** — agent: `coder-backend` (parallel with coder-frontend)
+   - Failure: `reviewer: BLOCKED`
+2. **coder-backend** — agent: `coder-backend` (parallel with: coder-frontend)
    - Success: `coder-backend: DONE`
-
-4. **coder-frontend** — agent: `coder-frontend` (parallel with coder-backend)
+3. **coder-frontend** — agent: `coder-frontend` (parallel with: coder-backend)
    - Success: `coder-frontend: DONE`
-
-5. **tester** — agent: `tester` (after: both coders)
+4. **tester** — agent: `tester` (after: coder-backend, coder-frontend)
    - Success: `tester: DONE`
-
-6. **reviewer-post** — agent: `reviewer` (mode: post-change, after: tester)
+5. **reviewer-post** — agent: `reviewer` (mode: post-change) (after: tester)
    - Success: `reviewer: APPROVED`
-   - Failure: `reviewer: FEEDBACK -> [agent]` -> re-spawn target agent
-
-7. **qa-analyst** — agent: `qa-analyst` (after: reviewer-post)
+   - Failure: `reviewer: FEEDBACK → [agent]`
+6. **qa-analyst** — agent: `qa-analyst` (after: reviewer-post)
    - Success: `qa-analyst: GREEN`
-   - Failure: `qa-analyst: FEEDBACK -> [agent]` -> re-spawn target agent, then
-     re-run reviewer-post -> qa-analyst (max 2 retry rounds)
+   - Failure: `qa-analyst: FEEDBACK → [agent]`
 
 Then:
-- **Update status** — set spec to `done`, fill completion note.
 - **Await merge** — do NOT auto-merge. Wait for user command.
-- **Cleanup** — only call `ExitWorktree` if `WORKTREE_CREATED=true`.
+- **Cleanup** — Only call `ExitWorktree` if `WORKTREE_CREATED=true`.
 
 ## References
 
-- `CLAUDE.md` — guardrails and workflow definitions.
+- `.agents/workflows.yaml` — canonical step sequences.
+- `AGENTS.md` — guardrails.

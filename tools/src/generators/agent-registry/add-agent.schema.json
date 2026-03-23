@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "AddAgent",
+  "title": "Add a new agent to the registry",
+  "type": "object",
+  "properties": {
+    "name": {"type": "string", "description": "Agent name (kebab-case)", "$default": {"$source": "argv", "index": 0}, "x-prompt": "Agent name"},
+    "model": {"type": "string", "enum": ["opus", "sonnet", "haiku"], "x-prompt": "Model"},
+    "tools": {"type": "string", "description": "Comma-separated tool list", "x-prompt": "Tools"},
+    "description": {"type": "string", "x-prompt": "Description"},
+    "permissionMode": {"type": "string", "enum": ["default", "acceptEdits"], "default": "default"}
+  },
+  "required": ["name", "model", "tools", "description"]
+}

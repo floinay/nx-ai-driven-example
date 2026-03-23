@@ -1,0 +1,1 @@
+{"$schema":"https://json-schema.org/schema","$id":"SyncAll","title":"Run all sync generators","type":"object","properties":{},"required":[]}
