@@ -3,15 +3,9 @@ node_modules/
 
 # Build
 dist/
+
+# Ephemeral workflow artifacts
 tmp/
-
-# Nx
-.nx/cache
-.nx/workspace-data
-
-# Generated (regenerate via `npx nx g tools:sync-all`)
-.claude/
-.codex/
 
 # Environment
 .env

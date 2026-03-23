@@ -1,8 +1,0 @@
-{
-  "$schema": "https://json-schema.org/schema",
-  "$id": "SyncCommands",
-  "title": "Regenerate .claude/skills/<command>/SKILL.md from workflows.yaml",
-  "type": "object",
-  "properties": {},
-  "required": []
-}

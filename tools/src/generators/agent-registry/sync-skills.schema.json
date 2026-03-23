@@ -1,8 +1,0 @@
-{
-  "$schema": "https://json-schema.org/schema",
-  "$id": "SyncSkills",
-  "title": "Regenerate .agents/skills/*/SKILL.md from skill templates",
-  "type": "object",
-  "properties": {},
-  "required": []
-}

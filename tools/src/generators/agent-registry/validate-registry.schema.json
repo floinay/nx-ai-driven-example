@@ -1,8 +1,0 @@
-{
-  "$schema": "https://json-schema.org/schema",
-  "$id": "ValidateRegistry",
-  "title": "Check that all derived files match the agent registry",
-  "type": "object",
-  "properties": {},
-  "required": []
-}

@@ -1,8 +1,0 @@
-{
-  "$schema": "https://json-schema.org/schema",
-  "$id": "SyncAgents",
-  "title": "Regenerate .claude/agents/*.md from the agent registry",
-  "type": "object",
-  "properties": {},
-  "required": []
-}
