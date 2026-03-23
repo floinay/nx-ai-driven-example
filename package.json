@@ -1,0 +1,28 @@
+{
+  "name": "@ai-driven/source",
+  "version": "0.0.0",
+  "private": true,
+  "description": "AI-Driven Development Scaffold — clone, run the wizard, get a complete agent system",
+  "scripts": {
+    "postinstall": "npx nx g tools:sync-all --quiet 2>/dev/null || true"
+  },
+  "keywords": [
+    "nx",
+    "ai-driven",
+    "claude",
+    "agents",
+    "scaffold"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@inquirer/prompts": "^8.3.2",
+    "@nx/devkit": "^22.6.1",
+    "@nx/js": "^22.6.1",
+    "@swc-node/register": "^1.11.1",
+    "@swc/core": "^1.15.21",
+    "nx": "^22.6.1",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3",
+    "yaml": "^2.8.3"
+  }
+}

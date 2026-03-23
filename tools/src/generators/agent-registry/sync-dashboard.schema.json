@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "cli": "nx",
+  "id": "sync-dashboard",
+  "title": "Sync Dashboard",
+  "type": "object",
+  "properties": {},
+  "required": []
+}

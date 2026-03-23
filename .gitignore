@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+tmp/
+
+# Nx
+.nx/cache
+.nx/workspace-data
+
+# Generated (can be regenerated via `npx nx g tools:sync-all`)
+.codex/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

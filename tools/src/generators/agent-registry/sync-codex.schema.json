@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "cli": "nx",
+  "id": "sync-codex",
+  "title": "Sync Codex",
+  "type": "object",
+  "properties": {},
+  "required": []
+}
