@@ -9,7 +9,8 @@ tmp/
 .nx/cache
 .nx/workspace-data
 
-# Generated (can be regenerated via `npx nx g tools:sync-all`)
+# Generated (regenerate via `npx nx g tools:sync-all`)
+.claude/
 .codex/
 
 # Environment

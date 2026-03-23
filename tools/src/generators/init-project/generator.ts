@@ -5,7 +5,7 @@
  * Generates .agents/ SSOT structure, templates, skills, hooks, prototype app,
  * and root documents based on project config, then runs sync-all.
  */
-import { Tree, logger } from '@nx/devkit';
+import { Tree, logger, addDependenciesToPackageJson } from '@nx/devkit';
 
 import syncAll from '../agent-registry/sync-all';
 import { buildAgentsYaml } from './lib/agents-yaml';
@@ -107,24 +107,47 @@ export default async function initProject(
   // 8. Generate prototype app
   writePrototypeApp(tree, config);
 
-  // 9. Create empty context files
+  // 9. Add prototype app dependencies to root package.json
+  addDependenciesToPackageJson(
+    tree,
+    {
+      react: '^19.0.0',
+      'react-dom': '^19.0.0',
+      'clsx': '^2.1.0',
+      'tailwind-merge': '^2.6.0',
+      'lucide-react': '^0.460.0',
+      '@tanstack/react-router': '^1.90.0',
+    },
+    {
+      '@nx/vite': '^22.6.1',
+      '@vitejs/plugin-react': '^4.4.0',
+      'vite': '^6.0.0',
+      'tailwindcss': '^3.4.0',
+      'autoprefixer': '^10.4.0',
+      'postcss': '^8.4.0',
+      '@types/react': '^19.0.0',
+      '@types/react-dom': '^19.0.0',
+    }
+  );
+
+  // 10. Create empty context files
   tree.write('.agents/context/glossary.yaml', '# Project glossary — define domain terms here\nterms: {}\n');
   tree.write('.agents/specs/.gitkeep', '');
   tree.write('tmp/.gitkeep', '');
 
-  // 10. Run sync-all to generate derived files
+  // 11. Run sync-all to generate derived files
   logger.info('Running sync-all to generate derived files...');
   await syncAll(tree, {});
 
   logger.info(`\n✅ AI-driven development system initialized for "${config.name}"!`);
   logger.info('');
   logger.info('Next steps:');
-  logger.info('  1. Review generated files in .agents/');
-  logger.info('  2. Customize agent templates in .agents/templates/');
-  logger.info('  3. Create your first spec:  npx nx g tools:create-spec --slug=my-feature --goal="..."');
-  logger.info('  4. Refine the spec:         /spec my-feature');
-  logger.info('  5. Implement it:            /implement my-feature');
-  logger.info('  6. Quick fix:               /fix "description of issue"');
-  logger.info('  7. Start prototype server:   npx nx serve prototype');
+  logger.info('  1. Run: npm install                    (installs prototype app deps)');
+  logger.info('  2. Review generated files in .agents/');
+  logger.info('  3. Start prototype: npx nx serve prototype');
+  logger.info('  4. Create a spec:   npx nx g tools:create-spec --slug=my-feature --goal="..."');
+  logger.info('  5. Refine:          /spec my-feature');
+  logger.info('  6. Implement:       /implement my-feature');
+  logger.info('  7. Quick fix:       /fix "description of issue"');
   logger.info('');
 }
