@@ -26,6 +26,3 @@ Return exactly one of:
 - `WORKFLOW: SPEC` + spec slug
 - `WORKFLOW: AD_HOC` + description
 - `WORKFLOW: PLAN` + milestone
-
-
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->

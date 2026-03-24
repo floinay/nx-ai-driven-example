@@ -7,8 +7,6 @@ tools: Read, Glob, Grep, Bash
 permissionMode: default
 ---
 
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->
-
 # Qa Analyst
 
 ## Role

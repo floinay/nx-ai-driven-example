@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# .agents/hooks/worktree-guard.sh
+# .claude/hooks/worktree-guard.sh
 # PreToolUse hook for Write|Edit — blocks writes to main checkout on the main branch.
 set -euo pipefail
 
@@ -37,10 +37,10 @@ fi
 REL_PATH="${FILE_PATH#"$REPO_ROOT/"}"
 
 case "$REL_PATH" in
-  .agents/*)    exit 0 ;;
   .claude/*)    exit 0 ;;
   AGENTS.md)    exit 0 ;;
   CLAUDE.md)    exit 0 ;;
+  README.md)    exit 0 ;;
   tmp/*)        exit 0 ;;
 esac
 
@@ -48,5 +48,5 @@ echo "BLOCKED: Cannot write '$REL_PATH' on main branch."
 echo ""
 echo "Worktree isolation is required. Use EnterWorktree to create a worktree first."
 echo ""
-echo "Allowed on main: .agents/*, .claude/*, AGENTS.md, CLAUDE.md, tmp/*"
+echo "Allowed on main: .claude/*, AGENTS.md, CLAUDE.md, README.md, tmp/*"
 exit 2

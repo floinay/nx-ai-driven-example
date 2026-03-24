@@ -6,8 +6,6 @@ argument-hint: [description]
 allowed-tools: Read, Glob, Grep, Bash, Write, Edit, Agent
 ---
 
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->
-
 # AD_HOC Workflow
 
 Fix: **$ARGUMENTS**
@@ -22,7 +20,7 @@ This command bypasses workflow-guard and launches the AD_HOC workflow directly.
 
 ## Dispatch
 
-Follow the AD_HOC workflow in `.agents/workflows.yaml` exactly:
+Follow the AD_HOC workflow in `AGENTS.md` exactly:
 
 0. **Ensure worktree** — check if already in a worktree.
    - **Already in worktree** → reuse it. Set `WORKTREE_CREATED=false`.
@@ -50,5 +48,4 @@ If during the fix it becomes clear the task is too large for AD_HOC, STOP and te
 
 ## References
 
-- `.agents/workflows.yaml` — canonical step sequences.
-- `AGENTS.md` — guardrails.
+- `AGENTS.md` — workflow steps and guardrails.

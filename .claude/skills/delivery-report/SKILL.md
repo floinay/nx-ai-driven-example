@@ -1,3 +1,9 @@
+---
+name: delivery-report
+description: Format delivery summary for the user after qa-analyst GREEN.
+allowed-tools: Read, Glob, Grep
+---
+
 # Delivery Report
 
 Format delivery summary for the user after qa-analyst GREEN.
@@ -20,6 +26,3 @@ Format delivery summary for the user after qa-analyst GREEN.
 - Review and merge when ready
 - Run: `git merge --no-ff task/<slug>`
 ```
-
-
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->

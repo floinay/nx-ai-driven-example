@@ -1,9 +1,7 @@
 import { Tree, logger } from '@nx/devkit';
 import type { CreateSpecSchema } from './types';
 import { toTitleCase } from './utils';
-import syncDashboard from './sync-dashboard';
-
-const SPECS_DIR = '.agents/specs';
+const SPECS_DIR = '.claude/specs';
 const TEMPLATE_PATH = `${SPECS_DIR}/TEMPLATE.md`;
 
 const VALID_STATUSES = ['stub', 'draft'] as const;
@@ -48,6 +46,4 @@ export default async function createSpec(
 
   tree.write(specPath, content);
   logger.info(`create-spec: created ${specPath} (status: ${status})`);
-
-  await syncDashboard(tree, {});
 }

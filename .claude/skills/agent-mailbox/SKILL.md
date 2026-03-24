@@ -1,3 +1,9 @@
+---
+name: agent-mailbox
+description: Inter-agent API contract passing via ephemeral mailbox files.
+allowed-tools: Read, Write
+---
+
 # Agent Mailbox Protocol
 
 Inter-agent API contract passing. All mailbox files are ephemeral (`tmp/` — gitignored).
@@ -54,6 +60,3 @@ Inter-agent API contract passing. All mailbox files are ephemeral (`tmp/` — gi
 ## Gaps
 - Known untested paths
 ```
-
-
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->

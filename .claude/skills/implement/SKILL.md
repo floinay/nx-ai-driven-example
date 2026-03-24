@@ -6,8 +6,6 @@ argument-hint: [spec-slug]
 allowed-tools: Read, Glob, Grep, Bash, Write, Edit, Agent
 ---
 
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->
-
 # IMPLEMENT Workflow
 
 Start the IMPLEMENT workflow for spec **$ARGUMENTS**.
@@ -17,7 +15,7 @@ This command bypasses workflow-guard and launches the IMPLEMENT workflow directl
 ## Pre-flight
 
 1. Read `AGENTS.md` — mandatory session context.
-2. Read `.agents/specs/$ARGUMENTS.md`. If it does not exist, STOP and tell the user.
+2. Read `.claude/specs/$ARGUMENTS.md`. If it does not exist, STOP and tell the user.
 3. Check frontmatter `status`:
    - `ready` or `in-progress` — proceed.
    - `draft` or `stub` — STOP. Tell user: "Spec is not ready. Run `/spec $ARGUMENTS` to refine it."
@@ -25,7 +23,7 @@ This command bypasses workflow-guard and launches the IMPLEMENT workflow directl
 
 ## Dispatch
 
-Follow the IMPLEMENT workflow in `.agents/workflows.yaml` exactly. The steps:
+Follow the IMPLEMENT workflow in `AGENTS.md` exactly. The steps:
 
 0. **Ensure worktree** — check if already in a worktree: run `git rev-parse --show-toplevel` and compare to the main repo root.
    - **Already in worktree** → reuse it. Set `WORKTREE_CREATED=false`.
@@ -54,5 +52,4 @@ Then:
 
 ## References
 
-- `.agents/workflows.yaml` — canonical step sequences.
-- `AGENTS.md` — guardrails.
+- `AGENTS.md` — workflow steps and guardrails.

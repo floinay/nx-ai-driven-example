@@ -3,7 +3,7 @@ import { Tree, logger } from '@nx/devkit';
 import type { StartTaskSchema } from './types';
 import updateSpec from './update-spec';
 
-const SPECS_DIR = '.agents/specs';
+const SPECS_DIR = '.claude/specs';
 
 export default async function startTask(
   tree: Tree,

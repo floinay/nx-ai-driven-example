@@ -1,3 +1,9 @@
+---
+name: prototype-design
+description: Generate a UI prototype screen in apps/prototype/.
+allowed-tools: Read, Glob, Grep, Bash, Write, Edit
+---
+
 # Prototype Design
 
 Generate a UI prototype screen in `apps/prototype/`.
@@ -15,6 +21,3 @@ Generate a UI prototype screen in `apps/prototype/`.
 - Hardcoded mock data only.
 - Use existing shadcn/ui components.
 - Follow existing screen patterns.
-
-
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->

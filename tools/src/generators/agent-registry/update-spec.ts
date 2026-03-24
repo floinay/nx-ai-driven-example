@@ -1,8 +1,6 @@
 import { Tree, logger } from '@nx/devkit';
 import type { UpdateSpecSchema } from './types';
-import syncDashboard from './sync-dashboard';
-
-const SPECS_DIR = '.agents/specs';
+const SPECS_DIR = '.claude/specs';
 
 const VALID_STATUSES = [
   'stub', 'draft', 'ready', 'in-progress', 'done',
@@ -64,6 +62,4 @@ export default async function updateSpec(
 
   tree.write(specPath, content);
   logger.info(`update-spec: "${slug}" → ${updates.join(', ')}`);
-
-  await syncDashboard(tree, {});
 }

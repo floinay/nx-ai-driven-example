@@ -1,6 +1,12 @@
+---
+name: spec-writer
+description: Fill every section of a spec template through progressive Q&A.
+allowed-tools: Read, Glob, Grep, Write, Edit
+---
+
 # Spec Writer
 
-Fill every section of `.agents/specs/TEMPLATE.md` through progressive Q&A.
+Fill every section of `.claude/specs/TEMPLATE.md` through progressive Q&A.
 Produce a complete, validated spec.
 
 ## Lifecycle
@@ -23,6 +29,3 @@ Produce a complete, validated spec.
 - One spec = one task = one branch.
 - Max 7 context files.
 - AC format: `[WHAT] verified by [HOW]`.
-
-
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->
