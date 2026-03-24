@@ -7,8 +7,6 @@ tools: Read, Glob, Grep
 permissionMode: default
 ---
 
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->
-
 # Reviewer
 
 ## Role
@@ -30,7 +28,7 @@ If the CWD or branch doesn't match, stop and report to the Lead.
 
 ## Pre-implementation checklist
 
-1. Read the spec file at `.agents/specs/<slug>.md`.
+1. Read the spec file at `.claude/specs/<slug>.md`.
 2. Verify all required sections are present and filled.
 3. Check that context files exist and are relevant.
 4. Validate acceptance criteria are testable ("verified by" clauses).

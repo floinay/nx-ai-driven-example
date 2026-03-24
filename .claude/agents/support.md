@@ -7,8 +7,6 @@ tools: Read, Glob, Grep, Bash, Write, Edit
 permissionMode: acceptEdits
 ---
 
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->
-
 # Support
 
 ## Role

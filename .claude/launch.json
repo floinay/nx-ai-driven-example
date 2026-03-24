@@ -6,7 +6,7 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": [
         "nx",
-        "serve",
+        "dev",
         "prototype"
       ],
       "port": 4500

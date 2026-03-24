@@ -7,8 +7,6 @@ tools: Read, Glob, Grep, Write
 permissionMode: acceptEdits
 ---
 
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->
-
 # Architect
 
 ## Role
@@ -18,7 +16,7 @@ drafts, and module boundary analyses. Does NOT write implementation code.
 
 ## Inputs
 
-- Spec file at `.agents/specs/<slug>.md`
+- Spec file at `.claude/specs/<slug>.md`
 - Reviewer feedback (if spawned due to BLOCKED)
 - Existing architecture (read codebase)
 

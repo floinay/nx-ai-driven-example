@@ -11,7 +11,7 @@ fi
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-SPEC_PATH="$REPO_ROOT/.agents/specs/$SLUG.md"
+SPEC_PATH="$REPO_ROOT/.claude/specs/$SLUG.md"
 
 if [[ ! -f "$SPEC_PATH" ]]; then
   echo "ERROR: Spec not found at $SPEC_PATH"

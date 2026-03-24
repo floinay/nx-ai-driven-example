@@ -1,50 +1,5 @@
 {
   "generators": {
-    "sync-agents": {
-      "factory": "./src/generators/agent-registry/sync-agents",
-      "schema": "./src/generators/agent-registry/sync-agents.schema.json",
-      "description": "Regenerate .claude/agents/*.md from the agent registry"
-    },
-    "sync-skills": {
-      "factory": "./src/generators/agent-registry/sync-skills",
-      "schema": "./src/generators/agent-registry/sync-skills.schema.json",
-      "description": "Regenerate .claude/skills/*/SKILL.md from skill sources"
-    },
-    "sync-settings": {
-      "factory": "./src/generators/agent-registry/sync-settings",
-      "schema": "./src/generators/agent-registry/sync-settings.schema.json",
-      "description": "Regenerate .claude/settings.json from settings.yaml + hooks.yaml"
-    },
-    "sync-commands": {
-      "factory": "./src/generators/agent-registry/sync-commands",
-      "schema": "./src/generators/agent-registry/sync-commands.schema.json",
-      "description": "Regenerate .claude/skills/<command>/SKILL.md from workflows.yaml"
-    },
-    "sync-all": {
-      "factory": "./src/generators/agent-registry/sync-all",
-      "schema": "./src/generators/agent-registry/sync-all.schema.json",
-      "description": "Run all sync generators"
-    },
-    "sync-dashboard": {
-      "factory": "./src/generators/agent-registry/sync-dashboard",
-      "schema": "./src/generators/agent-registry/sync-dashboard.schema.json",
-      "description": "Regenerate .agents/specs/INDEX.md dashboard"
-    },
-    "add-agent": {
-      "factory": "./src/generators/agent-registry/add-agent",
-      "schema": "./src/generators/agent-registry/add-agent.schema.json",
-      "description": "Add a new agent to the registry"
-    },
-    "update-agent": {
-      "factory": "./src/generators/agent-registry/update-agent",
-      "schema": "./src/generators/agent-registry/update-agent.schema.json",
-      "description": "Update an existing agent"
-    },
-    "remove-agent": {
-      "factory": "./src/generators/agent-registry/remove-agent",
-      "schema": "./src/generators/agent-registry/remove-agent.schema.json",
-      "description": "Remove an agent from the registry"
-    },
     "create-spec": {
       "factory": "./src/generators/agent-registry/create-spec",
       "schema": "./src/generators/agent-registry/create-spec.schema.json",
@@ -69,11 +24,6 @@
       "factory": "./src/generators/agent-registry/abort-task",
       "schema": "./src/generators/agent-registry/abort-task.schema.json",
       "description": "Cleanup worktree without merging"
-    },
-    "validate-registry": {
-      "factory": "./src/generators/agent-registry/validate-registry",
-      "schema": "./src/generators/agent-registry/validate-registry.schema.json",
-      "description": "Check derived files match the registry"
     }
   }
 }

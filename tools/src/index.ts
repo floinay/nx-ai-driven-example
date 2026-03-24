@@ -1,14 +1,5 @@
-export { default as syncAgents } from './generators/agent-registry/sync-agents';
-export { default as syncSkills } from './generators/agent-registry/sync-skills';
-export { default as syncSettings } from './generators/agent-registry/sync-settings';
-export { default as syncAll } from './generators/agent-registry/sync-all';
-export { default as addAgent } from './generators/agent-registry/add-agent';
-export { default as updateAgent } from './generators/agent-registry/update-agent';
-export { default as removeAgent } from './generators/agent-registry/remove-agent';
 export { default as createSpec } from './generators/agent-registry/create-spec';
 export { default as updateSpec } from './generators/agent-registry/update-spec';
 export { default as startTask } from './generators/agent-registry/start-task';
 export { default as finishTask } from './generators/agent-registry/finish-task';
 export { default as abortTask } from './generators/agent-registry/abort-task';
-export { default as syncDashboard } from './generators/agent-registry/sync-dashboard';
-export { default as validateRegistry } from './generators/agent-registry/validate-registry';

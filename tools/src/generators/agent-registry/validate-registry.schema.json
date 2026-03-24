@@ -1,1 +1,0 @@
-{"$schema":"https://json-schema.org/schema","$id":"ValidateRegistry","title":"Check derived files match registry","type":"object","properties":{},"required":[]}

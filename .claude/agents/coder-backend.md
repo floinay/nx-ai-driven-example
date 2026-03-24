@@ -7,8 +7,6 @@ tools: Read, Glob, Grep, Bash, Write, Edit
 permissionMode: acceptEdits
 ---
 
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->
-
 # Coder Backend
 
 ## Role
@@ -28,7 +26,7 @@ If the CWD or branch doesn't match, stop and report to the Lead.
 
 ## Inputs
 
-- Spec file at `.agents/specs/<slug>.md`
+- Spec file at `.claude/specs/<slug>.md`
 - Existing codebase patterns (read before writing)
 
 ## Output

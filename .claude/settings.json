@@ -25,7 +25,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .agents/hooks/worktree-guard.sh"
+            "command": "bash .claude/hooks/worktree-guard.sh"
           }
         ],
         "matcher": "Write|Edit"
@@ -36,7 +36,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .agents/hooks/spec-ready-gate.sh"
+            "command": "bash .claude/hooks/spec-ready-gate.sh"
           }
         ],
         "matcher": "Write|Edit"

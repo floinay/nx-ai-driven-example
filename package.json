@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nx serve prototype",
-    "postinstall": "npx nx g tools:sync-all --quiet"
+    "postinstall": "echo 'Ready.'"
   },
   "dependencies": {
     "react": "^19.0.0",

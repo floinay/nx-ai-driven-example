@@ -1,3 +1,9 @@
+---
+name: qa-verification
+description: Quality gate checklist for the qa-analyst agent.
+allowed-tools: Read, Glob, Grep, Bash
+---
+
 # QA Verification Checklist
 
 Quality gate checklist for the qa-analyst agent.
@@ -17,6 +23,3 @@ Quality gate checklist for the qa-analyst agent.
 - `qa-analyst: GREEN` — all checks pass
 - `qa-analyst: FEEDBACK → [agent]` — specific issues, route to agent
 - `qa-analyst: ESCALATE → lead` — needs user decision
-
-
-<!-- GENERATED FROM .agents/ — DO NOT EDIT MANUALLY -->

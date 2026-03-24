@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# .agents/hooks/spec-ready-gate.sh
+# .claude/hooks/spec-ready-gate.sh
 # PostToolUse hook — validates spec readiness when status is set to ready.
 set -euo pipefail
 
@@ -15,7 +15,7 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 REL_PATH="${FILE_PATH#"$REPO_ROOT/"}"
 
 case "$REL_PATH" in
-  .agents/specs/*.md) ;;
+  .claude/specs/*.md) ;;
   *) exit 0 ;;
 esac
 
